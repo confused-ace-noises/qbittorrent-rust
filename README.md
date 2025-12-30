@@ -49,3 +49,18 @@ fn main() {
 - Complete documentation: the whole library has been documented, in a short and concise way.
 - Freedom-giving: this library also aims to giving fine control to the requests done to the API.
 - Similar structure to the native API: using this library is very simple, and almost every functionality is similarly structured to the actual native API.
+
+#### License
+
+<sup>
+Licensed under either of <a href="LICENSE-APACHE.txt">Apache License, Version
+2.0</a> or <a href="LICENSE-MIT.txt">MIT license</a> at your option.
+</sup>
+
+<br>
+
+<sub>
+Unless you explicitly state otherwise, any contribution intentionally submitted
+for inclusion in this project by you, as defined in the Apache-2.0 license, shall be
+dual licensed as above, without any additional terms or conditions.
+</sub>
