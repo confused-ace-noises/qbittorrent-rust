@@ -1,9 +1,9 @@
-use std::{cell::OnceCell, vec};
+use std::vec;
 
 #[derive(Debug, Clone)]
 pub(crate) struct SepVec<T: Clone, U: Clone + Into<String>> {
     vector: Vec<T>,
-    separator: OnceCell<U>,
+    separator: U,
 }
 impl<T: Clone, U: Clone> SepVec<T, U>
 where
@@ -16,11 +16,9 @@ where
     {
         let vec = starting.into_iter().collect::<Vec<T>>();
 
-        let onec = OnceCell::new();
-        onec.set(separator).map_err(|_| "fuck").unwrap();
         Self {
             vector: vec,
-            separator: onec,
+            separator,
         }
     }
 
@@ -29,7 +27,7 @@ where
     }
 
     pub(crate) fn len_total(&self) -> usize {
-        (self.vector.len()*2)-1
+        (self.vector.len() * 2) - 1
     }
 
     pub(crate) fn inner_vec(&self) -> Vec<T> {
@@ -51,7 +49,7 @@ where
         for x in vector.into_iter().zip(0..len) {
             final_vector.push(x.0);
             if x.1 != len - 1 {
-                final_vector.push(Into::<T>::into(self.separator.get().unwrap().clone()));
+                final_vector.push(Into::<T>::into(self.separator.clone()));
             };
         }
 
@@ -72,8 +70,7 @@ where
             let x: String = item.0.into();
             final_string.push_str(x.as_str());
             if item.1 != len - 1 {
-                final_string
-                    .push_str(Into::<String>::into(self.separator.get().and_then(|k| Some(k.clone())).ok_or("fuck.").unwrap()).as_str());
+                final_string.push_str(Into::<String>::into(self.separator.clone()).as_str());
             }
         }
 
